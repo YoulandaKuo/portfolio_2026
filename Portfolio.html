@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Arden Vale · Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f1e8d6;
+    --bg-2:#ece1cb;
+    --ink:#2c3e44;
+    --ink-soft:#5a6b71;
+    --rust:#c95c2a;
+    --rust-deep:#a44820;
+    --teal:#2c4a52;
+    --rule:rgba(44,62,68,.18);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Cormorant Garamond", "Cormorant", Georgia, serif;
+    font-size:21px;
+    line-height:1.45;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  a{color:inherit;text-decoration:none}
+
+  /* ───────── Nav ───────── */
+  nav.top{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 44px 22px 36px;
+    border-bottom:1px solid var(--rule);
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:var(--bg);
+    backdrop-filter:saturate(140%) blur(6px);
+    -webkit-backdrop-filter:saturate(140%) blur(6px);
+    transition:transform .35s ease;
+  }
+  nav.top.nav-hidden{transform:translateY(-110%)}
+  .mark{
+    width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;
+    color:var(--rust);
+  }
+  .links{display:flex;gap:48px;font-size:18px;letter-spacing:.01em}
+  .links a{padding:6px 2px;transition:color .2s}
+  .links a:hover{color:var(--rust-deep)}
+
+  /* ───────── Hero ───────── */
+  .hero{
+    padding:110px 24px 60px;
+    display:flex;flex-direction:column;align-items:center;
+  }
+  .emblem{
+    width:min(520px,72vw);
+    height:auto;
+    display:block;
+  }
+  .intro{
+    max-width:760px;margin:54px auto 0;
+    text-align:center;
+    font-size:25px;line-height:1.4;
+    color:var(--ink);
+    text-wrap:pretty;
+  }
+  .intro em{color:var(--rust-deep);font-style:italic}
+
+  /* ───────── Section heads ───────── */
+  .section{
+    max-width:1280px;margin:0 auto;padding:120px 44px 0;
+  }
+  .sec-head{
+    display:flex;align-items:baseline;justify-content:space-between;
+    margin-bottom:36px;
+    border-bottom:1px solid var(--rule);
+    padding-bottom:14px;
+  }
+  .sec-head h2{
+    font-weight:500;font-size:32px;letter-spacing:.005em;margin:0;
+    color:var(--teal);
+  }
+  .sec-head .meta{
+    font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--ink-soft);
+  }
+
+  /* ───────── Project grid (varied) ───────── */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:32px;
+  }
+  .card{
+    position:relative;display:block;cursor:pointer;
+  }
+  .card .frame{
+    position:relative;
+    border-radius:6px;
+    overflow:hidden;
+    background:#000;
+    transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .card:hover .frame{transform:translateY(-4px);box-shadow:0 22px 40px -28px rgba(40,30,20,.45)}
+  .card .label{
+    display:flex;align-items:baseline;justify-content:space-between;gap:18px;
+    padding:18px 2px 0;
+  }
+  .card .label .t{
+    font-size:24px;color:var(--teal);font-weight:500;letter-spacing:.005em;
+  }
+  .card .label .y{
+    font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;
+    color:var(--ink-soft);text-transform:uppercase;white-space:nowrap;
+  }
+  .card .tagline{
+    font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;
+    color:var(--ink-soft);text-transform:uppercase;margin-top:6px;
+    padding:0 2px;
+  }
+  .card .arrow{
+    position:absolute;top:14px;right:14px;
+    width:34px;height:34px;border-radius:50%;
+    background:rgba(255,255,255,.92);
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;transform:translate(4px,-4px);
+    transition:opacity .25s, transform .25s;
+    color:var(--teal);
+  }
+  .card:hover .arrow{opacity:1;transform:translate(0,0)}
+
+  /* card size variants — uniform 2-up grid */
+  .c-wide,.c-half,.c-third,.c-tall,.c-fill{grid-column:span 1}
+  .card .frame{aspect-ratio:4/3}
+  .ratio-16x10 .frame,
+  .ratio-4x3  .frame,
+  .ratio-1x1  .frame,
+  .ratio-3x4  .frame,
+  .ratio-5x4  .frame{aspect-ratio:4/3}
+
+  /* color backgrounds for project frames */
+  .bg-cobalt{background:#2f6fd6}
+  .bg-emerald{background:#1aa861}
+  .bg-slate{background:#46506a}
+  .bg-lilac{background:#9a8bd6}
+  .bg-clay{background:#c95c2a}
+  .bg-bone{background:#e9dcc1;color:var(--teal)}
+  .bg-ink{background:#1c2730}
+
+  /* mock content panels inside frames */
+  .mock{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:34px}
+  .mock-card{
+    background:#fff;border-radius:10px;
+    box-shadow:0 18px 40px -20px rgba(0,0,0,.35);
+    overflow:hidden;
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+    color:#222;
+  }
+  /* SaaS dashboard mock */
+  .saas{width:78%;aspect-ratio:16/10;padding:16px 18px;font-size:11px}
+  .saas .row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #eee}
+  .saas .row:last-child{border-bottom:none}
+  .saas .pill{font-size:10px;padding:2px 8px;border-radius:999px;background:#eef3ff;color:#2f6fd6}
+  .saas .pill.ok{background:#e6f6ee;color:#1aa861}
+  .saas h6{margin:0 0 12px;font-size:12px;font-weight:600}
+  .saas .toolbar{display:flex;gap:8px;margin-bottom:10px}
+  .saas .chip{background:#f1f3f7;border-radius:4px;padding:4px 8px;font-size:10px;color:#4a5566}
+
+  /* phone mock */
+  .phone{
+    width:170px;aspect-ratio:9/19;border-radius:24px;background:#fff;
+    box-shadow:0 22px 50px -20px rgba(0,0,0,.5);
+    padding:18px 14px;display:flex;flex-direction:column;gap:10px;font-size:10px;
+  }
+  .phone .status{display:flex;justify-content:space-between;color:#222;font-weight:600;font-size:9px}
+  .phone h5{margin:6px 0;font-size:14px;font-weight:600}
+  .phone .input{height:26px;border-radius:14px;background:#f1f2f6;display:flex;align-items:center;padding:0 10px;color:#7a808a;font-size:9px}
+  .phone .icons{display:flex;justify-content:space-between;margin:6px 0}
+  .phone .icons .ic{width:38px;text-align:center;font-size:9px;color:#5a6373}
+  .phone .icons .ic .blob{width:34px;height:34px;border-radius:10px;background:#eef3ff;margin:0 auto 4px}
+  .phone .tile{height:48px;border-radius:8px;background:linear-gradient(180deg,#f1ece2,#e3dccb)}
+  .phone .tile.tall{height:60px}
+  .phone .tabbar{
+    margin-top:auto;display:flex;justify-content:space-around;padding-top:8px;border-top:1px solid #eee;
+    color:#9aa0ad;font-size:8px
+  }
+
+  /* split phones */
+  .duo{display:flex;gap:14px;align-items:flex-end;justify-content:center}
+  .duo .phone.b{transform:translateY(-22px)}
+
+  /* terminal */
+  .term{
+    width:80%;aspect-ratio:16/10;background:#0d1620;border-radius:8px;
+    box-shadow:0 22px 40px -20px rgba(0,0,0,.6);
+    overflow:hidden;font-family:"JetBrains Mono",monospace;font-size:11px;color:#cfe;
+  }
+  .term .tb{display:flex;gap:6px;padding:9px 12px;background:#16212d;border-bottom:1px solid #233140}
+  .term .tb i{width:10px;height:10px;border-radius:50%;background:#3a4a5d;display:inline-block}
+  .term .tb i:nth-child(1){background:#ff5f57}
+  .term .tb i:nth-child(2){background:#febc2e}
+  .term .tb i:nth-child(3){background:#28c840}
+  .term .body{padding:14px 16px;line-height:1.55}
+  .term .body .c1{color:#7be0a6}
+  .term .body .c2{color:#7cb3ff}
+  .term .body .c3{color:#f5b97a}
+  .term .body .dim{color:#5b6a7a}
+
+  /* poster mock */
+  .poster{
+    width:62%;aspect-ratio:3/4;background:#f7ecd6;border-radius:6px;
+    box-shadow:0 22px 40px -20px rgba(0,0,0,.4);
+    padding:22px;display:flex;flex-direction:column;justify-content:space-between;
+    color:#2c3e44;font-family:"Cormorant Garamond",serif;
+  }
+  .poster .yr{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.2em}
+  .poster .big{font-size:36px;line-height:.95;font-style:italic;color:var(--rust-deep)}
+  .poster .stamp{
+    align-self:flex-end;width:60px;height:60px;border:1.5px solid currentColor;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:.16em;
+    font-family:"JetBrains Mono",monospace;
+  }
+
+  /* watch / wearable */
+  .watch{
+    width:160px;aspect-ratio:1/1.2;background:#000;border-radius:36px;
+    box-shadow:0 22px 40px -20px rgba(0,0,0,.6);
+    padding:14px;display:flex;flex-direction:column;gap:8px;color:#fff;font-size:10px;
+    font-family:-apple-system,system-ui,sans-serif;
+  }
+  .watch .ring{
+    width:90px;height:90px;margin:6px auto 0;border-radius:50%;
+    background:conic-gradient(#22d39a 0 78%, #1f2933 78% 100%);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .watch .ring .inner{width:64px;height:64px;border-radius:50%;background:#000;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:600}
+  .watch .stats{display:flex;justify-content:space-between;font-size:9px;color:#a0a8b3;margin-top:4px}
+
+  /* journal / map mock */
+  .map{
+    position:absolute;inset:18px;border-radius:6px;
+    background:
+      radial-gradient(circle at 30% 60%, rgba(255,255,255,.18), transparent 40%),
+      repeating-linear-gradient(135deg, rgba(255,255,255,.05) 0 2px, transparent 2px 22px),
+      linear-gradient(180deg,#1c2730,#243240);
+    overflow:hidden;
+  }
+  .map svg{position:absolute;inset:0;width:100%;height:100%}
+  .map .legend{
+    position:absolute;left:18px;bottom:14px;color:#bbd1c8;
+    font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  }
+  .map .pin{position:absolute;width:10px;height:10px;border-radius:50%;background:#f4b860;box-shadow:0 0 0 4px rgba(244,184,96,.25)}
+
+  /* article / editorial mock */
+  .article{
+    width:78%;aspect-ratio:4/3;background:#fff;border-radius:6px;padding:22px 26px;
+    box-shadow:0 22px 40px -22px rgba(0,0,0,.35);
+    font-family:"Cormorant Garamond",serif;color:#2c3e44;
+  }
+  .article h4{margin:0;font-size:22px;font-weight:500;line-height:1.15}
+  .article h4 em{color:var(--rust-deep)}
+  .article p{font-size:11.5px;line-height:1.5;color:#4a5566;margin:10px 0 0;font-family:-apple-system,system-ui,sans-serif}
+  .article .by{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.18em;color:#8a93a0;text-transform:uppercase;margin-top:10px}
+  .article .rule{height:1px;background:#e9e4d8;margin:10px 0}
+
+  /* ───────── Footer ───────── */
+  footer{
+    margin-top:140px;padding:60px 44px 50px;
+    border-top:1px solid var(--rule);
+    display:flex;align-items:center;justify-content:space-between;
+    font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  footer .social{display:flex;gap:14px}
+  footer .social a{
+    width:34px;height:34px;border-radius:50%;background:var(--bg-2);
+    display:flex;align-items:center;justify-content:center;color:var(--teal);
+    transition:background .2s, color .2s;
+  }
+  footer .social a:hover{background:var(--rust);color:#fff}
+
+  /* responsive */
+  @media (max-width:680px){
+    .grid{grid-template-columns:1fr}
+    .card .frame{aspect-ratio:4/3}
+  }
+  @media (max-width:900px){
+    .section{padding:80px 24px 0}
+    nav.top{padding:18px 22px}
+    .links{gap:24px;font-size:15px}
+    .hero{padding:70px 18px 40px}
+    .emblem{width:calc(100vw - 36px);max-width:520px}
+    .intro{font-size:20px}
+  }
+</style>
+</head>
+<body style="background-color: rgb(243, 237, 229)">
+
+<nav class="top" style="background-color: rgb(243, 237, 229)">
+  <a class="mark" href="#" aria-label="Home">
+    <img src="assets/nav-mark.png" alt="" width="28" height="28" style="display:block;width:28px;height:28px;object-fit:contain">
+  </a>
+  <div class="links">
+    <a href="#case-studies" class="active">Case Studies</a>
+    <a href="#side-projects">Side Projects</a>
+    <a href="#about">About</a>
+  </div>
+</nav>
+
+<!-- ───────── Hero ───────── -->
+<section class="hero">
+  <img class="emblem" src="assets/hero-emblem.png" alt="Portfolio emblem" style="width: 520px; height: 355px">
+  <svg style="display:none" viewBox="0 0 600 480" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <path id="topArc" d="M 130,240 a 170,210 0 0 1 340,0" fill="none"/>
+      <path id="botArc" d="M 130,240 a 170,210 0 0 0 340,0" fill="none"/>
+      <filter id="grain" x="0" y="0" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3"/>
+        <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.10 0"/>
+        <feComposite in2="SourceGraphic" operator="in"/>
+      </filter>
+    </defs>
+
+    <!-- left botanical sprig (laurel-like) -->
+    <g transform="translate(95,220)" fill="#c95c2a">
+      <path d="M0,0 C-10,-40 -10,-90 5,-130" stroke="#c95c2a" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <g>
+        <ellipse cx="-10" cy="-20" rx="14" ry="6" transform="rotate(-30 -10 -20)"/>
+        <ellipse cx="-14" cy="-45" rx="16" ry="6.5" transform="rotate(-35 -14 -45)"/>
+        <ellipse cx="-14" cy="-72" rx="17" ry="7" transform="rotate(-42 -14 -72)"/>
+        <ellipse cx="-10" cy="-100" rx="15" ry="6.5" transform="rotate(-52 -10 -100)"/>
+        <ellipse cx="-3" cy="-126" rx="13" ry="5.5" transform="rotate(-62 -3 -126)"/>
+        <ellipse cx="14" cy="-12" rx="14" ry="6" transform="rotate(28 14 -12)"/>
+        <ellipse cx="18" cy="-38" rx="16" ry="6.5" transform="rotate(34 18 -38)"/>
+        <ellipse cx="18" cy="-66" rx="17" ry="7" transform="rotate(42 18 -66)"/>
+        <ellipse cx="14" cy="-94" rx="15" ry="6.5" transform="rotate(54 14 -94)"/>
+        <ellipse cx="6" cy="-120" rx="12" ry="5" transform="rotate(66 6 -120)"/>
+      </g>
+      <!-- berry cluster -->
+      <circle cx="2" cy="-138" r="5" fill="#a44820"/>
+      <circle cx="-7" cy="-134" r="4" fill="#a44820"/>
+      <circle cx="9" cy="-132" r="4" fill="#a44820"/>
+    </g>
+
+    <!-- right botanical sprig (mirrored) -->
+    <g transform="translate(505,220) scale(-1,1)" fill="#c95c2a">
+      <path d="M0,0 C-10,-40 -10,-90 5,-130" stroke="#c95c2a" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <g>
+        <ellipse cx="-10" cy="-20" rx="14" ry="6" transform="rotate(-30 -10 -20)"/>
+        <ellipse cx="-14" cy="-45" rx="16" ry="6.5" transform="rotate(-35 -14 -45)"/>
+        <ellipse cx="-14" cy="-72" rx="17" ry="7" transform="rotate(-42 -14 -72)"/>
+        <ellipse cx="-10" cy="-100" rx="15" ry="6.5" transform="rotate(-52 -10 -100)"/>
+        <ellipse cx="-3" cy="-126" rx="13" ry="5.5" transform="rotate(-62 -3 -126)"/>
+        <ellipse cx="14" cy="-12" rx="14" ry="6" transform="rotate(28 14 -12)"/>
+        <ellipse cx="18" cy="-38" rx="16" ry="6.5" transform="rotate(34 18 -38)"/>
+        <ellipse cx="18" cy="-66" rx="17" ry="7" transform="rotate(42 18 -66)"/>
+        <ellipse cx="14" cy="-94" rx="15" ry="6.5" transform="rotate(54 14 -94)"/>
+        <ellipse cx="6" cy="-120" rx="12" ry="5" transform="rotate(66 6 -120)"/>
+      </g>
+      <circle cx="2" cy="-138" r="5" fill="#a44820"/>
+      <circle cx="-7" cy="-134" r="4" fill="#a44820"/>
+      <circle cx="9" cy="-132" r="4" fill="#a44820"/>
+    </g>
+
+    <!-- outer oval ring (teal) -->
+    <ellipse cx="300" cy="240" rx="170" ry="210" fill="none" stroke="#2c4a52" stroke-width="6"/>
+    <!-- inner oval line -->
+    <ellipse cx="300" cy="240" rx="155" ry="195" fill="none" stroke="#2c4a52" stroke-width="1.4"/>
+
+    <!-- inner cream panel -->
+    <ellipse cx="300" cy="240" rx="60" ry="170" fill="#ece1cb"/>
+    <ellipse cx="300" cy="240" rx="60" ry="170" fill="none" stroke="#2c4a52" stroke-width="1.4"/>
+
+    <!-- text around top -->
+    <text font-family="Cormorant Garamond, serif" font-style="italic" font-size="28" fill="#c95c2a" letter-spacing="6">
+      <textPath href="#topArc" startOffset="50%" text-anchor="middle">ARDEN  VALE  PORTFOLIO</textPath>
+    </text>
+    <!-- text around bottom -->
+    <text font-family="Cormorant Garamond, serif" font-size="22" fill="#2c4a52" letter-spacing="12">
+      <textPath href="#botArc" startOffset="50%" text-anchor="middle">PRODUCT  ·  DESIGN  ·  UX</textPath>
+    </text>
+
+    <!-- center column: monogram + sunburst + tag -->
+    <g transform="translate(300,170)" fill="#2c4a52" font-family="Cormorant Garamond, serif">
+      <text text-anchor="middle" font-size="34" font-style="italic" font-weight="500">A</text>
+      <text text-anchor="middle" font-size="34" font-style="italic" font-weight="500" y="38">V</text>
+    </g>
+
+    <!-- sunburst in center -->
+    <g transform="translate(300,250)">
+      <circle r="9" fill="#c95c2a"/>
+      <g stroke="#c95c2a" stroke-width="2.4" stroke-linecap="round">
+        <path d="M0,-22 v9"/>
+        <path d="M0,22 v-9"/>
+        <path d="M-22,0 h9"/>
+        <path d="M22,0 h-9"/>
+        <path d="M-15.5,-15.5 l6.3,6.3"/>
+        <path d="M15.5,15.5 l-6.3,-6.3"/>
+        <path d="M15.5,-15.5 l-6.3,6.3"/>
+        <path d="M-15.5,15.5 l6.3,-6.3"/>
+      </g>
+    </g>
+
+    <!-- year stamp -->
+    <g transform="translate(300,335)" fill="#2c4a52" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="3">
+      <text text-anchor="middle">EST.</text>
+      <text text-anchor="middle" y="14" font-size="14" letter-spacing="4">2026</text>
+    </g>
+
+    <!-- grain overlay -->
+    <rect width="600" height="480" fill="black" filter="url(#grain)" opacity=".5"/>
+  </svg>
+
+  <p class="intro">Youlanda is a designer with experience designing fintech, B2B SaaS, and consumer products at scale, with background at Meta, Grab, and product management.</p>
+</section>
+
+<!-- ───────── Case Studies ───────── -->
+<section class="section" id="case-studies">
+  <div class="sec-head">
+    <h2>Selected Case Studies</h2>
+  </div>
+
+  <div class="grid">
+
+    <!-- 1. Wide hero project: SaaS dashboard -->
+    <a class="card c-fill ratio-16x10" href="case-studies/helix.html">
+      <div class="frame bg-cobalt">
+        <div class="mock">
+          <div class="mock-card saas">
+            <h6>Quality Reviews · This Week</h6>
+            <div class="toolbar">
+              <span class="chip">Last 30 days</span>
+              <span class="chip">All queues</span>
+              <span class="chip">Status: any</span>
+            </div>
+            <div class="row"><span>EMEA · Concentrix</span><span class="pill ok">Completed</span></div>
+            <div class="row"><span>SEA · Lumina Ops</span><span class="pill">In review</span></div>
+            <div class="row"><span>NA · Field Team</span><span class="pill">Queued</span></div>
+            <div class="row"><span>LATAM · Aurora</span><span class="pill ok">Completed</span></div>
+            <div class="row"><span>JP · Onsite</span><span class="pill">In review</span></div>
+          </div>
+        </div>
+        <div class="arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="label"><span class="t">Meta – Quality Management System</span></div>
+    </a>
+
+    <!-- 2. Tall phone app: account recovery -->
+    <a class="card c-tall ratio-3x4" href="#">
+      <div class="frame bg-emerald">
+        <div class="mock">
+          <div class="phone">
+            <div class="status"><span>9:41</span><span>● ● ●</span></div>
+            <div style="margin:18px auto 4px;width:48px;height:48px;border-radius:12px;background:linear-gradient(180deg,#1aa861,#0d7a47);display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px">⌧</div>
+            <h5 style="text-align:center">PIN attempts exceeded</h5>
+            <p style="font-size:9.5px;color:#6c7480;text-align:center;margin:0;line-height:1.5">For your safety, payments are paused. Verify identity to restore.</p>
+            <div style="flex:1"></div>
+            <button style="background:#1aa861;color:#fff;border:0;border-radius:8px;padding:10px;font-size:11px;font-weight:600">Verify identity</button>
+            <button style="background:#fff;color:#1aa861;border:1px solid #d6e6dd;border-radius:8px;padding:10px;font-size:11px;font-weight:600">Not now</button>
+          </div>
+        </div>
+        <div class="arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="label"><span class="t">Northwind Pay — Account Recovery</span></div>
+    </a>
+
+    <!-- 3. Map / journey -->
+    <a class="card c-half ratio-5x4" href="#">
+      <div class="frame bg-ink">
+        <div class="map">
+          <svg viewBox="0 0 400 320" preserveAspectRatio="none">
+            <path d="M20 260 Q 90 200, 140 220 T 250 160 T 380 80" stroke="#f4b860" stroke-width="2" fill="none" stroke-dasharray="2 5"/>
+            <path d="M30 90 Q 120 130, 200 120 T 360 200" stroke="#7be0a6" stroke-width="2" fill="none" stroke-dasharray="2 5"/>
+          </svg>
+          <div class="pin" style="left:14%;top:78%"></div>
+          <div class="pin" style="left:44%;top:64%;background:#7be0a6;box-shadow:0 0 0 4px rgba(123,224,166,.25)"></div>
+          <div class="pin" style="left:78%;top:28%"></div>
+          <div class="pin" style="left:30%;top:30%;background:#7be0a6;box-shadow:0 0 0 4px rgba(123,224,166,.25)"></div>
+          <div class="legend">Field routes · 12 cities · Q3</div>
+        </div>
+        <div class="arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="label"><span class="t">Drayage — Logistics Operations</span></div>
+    </a>
+
+    <!-- 4. Investor app phone -->
+    <a class="card c-half ratio-5x4" href="#">
+      <div class="frame bg-slate">
+        <div class="mock">
+          <div class="phone" style="background:#1c2438;color:#fff">
+            <div class="status" style="color:#fff"><span>9:41</span><span>●</span></div>
+            <div style="margin:20px auto 8px;width:120px;height:80px;border-radius:8px;background:linear-gradient(135deg,#9a8bd6,#5b67c2);display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:600">1.33%</div>
+            <h5 style="text-align:center;color:#fff;margin:6px 0 4px">Low default rates</h5>
+            <p style="font-size:9px;color:#a4adc4;text-align:center;line-height:1.5;margin:0">Underwriting filters out 92% of risk before listing.</p>
+            <div style="flex:1"></div>
+            <button style="background:#6e7adf;color:#fff;border:0;border-radius:8px;padding:10px;font-size:11px;font-weight:600">Sign up</button>
+            <div style="text-align:center;color:#a4adc4;font-size:9px">Skip for now</div>
+          </div>
+        </div>
+        <div class="arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="label"><span class="t">Crescent Capital — Investor Onboarding</span></div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ───────── Side Projects ───────── -->
+<section class="section" id="side-projects">
+  <div class="sec-head">
+    <h2>Vibe-Coded Side Projects</h2>
+  </div>
+
+  <div class="grid">
+
+    <!-- editorial -->
+    <a class="card c-half ratio-4x3" href="#">
+      <div class="frame bg-bone">
+        <div class="mock">
+          <div class="article">
+            <h4>On <em>seams</em>: the parts of a product nobody notices, until they do.</h4>
+            <div class="rule"></div>
+            <p>Empty states, error toasts, the gap between two charts that should add up — the seams are the place where craft is most visible. A short essay on noticing them, and a checklist for closing them.</p>
+            <div class="by">Essay · 12 min read · Issue 04</div>
+          </div>
+        </div>
+        <div class="arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="label"><span class="t">Field Notes — A writing practice</span></div>
+    </a>
+
+    <!-- poster -->
+    <a class="card c-third ratio-4x3" href="#">
+      <div class="frame bg-clay">
+        <div class="mock">
+          <div class="poster">
+            <div>
+              <div class="yr">MMXXVI</div>
+              <div class="big" style="margin-top:10px">A small<br>annual,<br>printed by<br>hand.</div>
+            </div>
+            <div class="stamp">N°04</div>
+          </div>
+        </div>
+        <div class="arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="label"><span class="t">Annual N°04 — Risograph</span></div>
+    </a>
+
+    <!-- terminal / cli tool -->
+    <a class="card c-third ratio-4x3" href="#">
+      <div class="frame bg-ink">
+        <div class="mock">
+          <div class="term">
+            <div class="tb"><i></i><i></i><i></i></div>
+            <div class="body">
+<div><span class="dim">$</span> <span class="c2">jot</span> new "morning pages"</div>
+<div class="dim">→ created entry · 2026-05-12 · 06:41</div>
+<div><span class="dim">$</span> <span class="c2">jot</span> tag #ritual #writing</div>
+<div class="dim">→ 2 tags added</div>
+<div><span class="dim">$</span> <span class="c2">jot</span> recent --limit 3</div>
+<div><span class="c1">●</span> on craft &amp; constraints <span class="dim">· 3d</span></div>
+<div><span class="c1">●</span> rough sketches, riso <span class="dim">· 6d</span></div>
+<div><span class="c3">●</span> field notes draft <span class="dim">· wip</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="arrow" style="color:#fff"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="label"><span class="t">Jot — A tiny journaling CLI</span></div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ───────── About strip ───────── -->
+<section class="section" id="about">
+  <div class="sec-head">
+    <h2>About</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:start">
+    <div style="font-size:22px;line-height:1.55;color:var(--ink);text-wrap:pretty">Hi there! I'm Youlanda. I’m a product designer with 10+ years of experience building user-centred digital products. I recently worked at CargoAi as a Product Manager, leading product strategy and cross-functional collaboration. The role strengthened my ability to think across business, engineering, and design.
+
+
+Before CargoAi, I was a designer at Meta in London, focused on customer support tools. I also worked at Grab in Singapore, designing one of Southeast Asia’s most widely used ride-hailing platforms.</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-soft);line-height:2;letter-spacing:.04em">
+      <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--rule);padding:8px 0"><span>BASED</span><span>FRANCE / REMOTE</span></div>
+      <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--rule);padding:8px 0"><span>PREVIOUSLY</span><span>META · GRAB</span></div>
+      <div style="display:flex;justify-content:space-between;padding:8px 0"><span>SPEAKS</span><span>ENGLISH · 中文 · UN PEU FRANÇAIS</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 — YOULANDA KUO</div>
+  <div class="social">
+    <a href="https://www.linkedin.com/in/youlanda-k-5145a031/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm6 0h3.8v1.7h.05c.53-1 1.82-2.05 3.75-2.05 4 0 4.74 2.63 4.74 6.05V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.86V21H9V9z"/></svg></a>
+    <a href="#" aria-label="Email"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 7 9-7"/></svg></a>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var nav = document.querySelector('nav.top');
+    var last = 0;
+    window.addEventListener('scroll', function(){
+      var y = window.scrollY;
+      if(y > last && y > 80){
+        nav.classList.add('nav-hidden');
+      } else {
+        nav.classList.remove('nav-hidden');
+      }
+      last = y;
+    }, {passive:true});
+  })();
+</script>
+</body>
+</html>
