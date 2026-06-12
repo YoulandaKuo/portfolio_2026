@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-canvas text-ink font-serif antialiased;
+    font-size: 21px;
+    line-height: 1.45;
+    text-rendering: optimizeLegibility;
+  }
+  a { @apply text-inherit no-underline; }
+}
