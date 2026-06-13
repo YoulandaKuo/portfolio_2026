@@ -11,7 +11,7 @@ export default function ProjectCard({ href, bgClass, title, children, arrowLight
     <a href={href || '#'} className="relative block cursor-pointer group">
       <motion.div
         className={`relative rounded-[6px] overflow-hidden ${bgClass}`}
-        style={{ aspectRatio: '4/3' }}
+        style={{ aspectRatio: '1/1' }}
         whileHover={{ y: -4, boxShadow: '0 22px 40px -28px rgba(40,30,20,0.45)' }}
         transition={{ type: 'spring', stiffness: 280, damping: 22 }}
       >

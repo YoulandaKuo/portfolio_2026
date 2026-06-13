@@ -2,6 +2,11 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import { TwoColText, ThreeColCards, StatGrid, PullQuote } from '../components/blocks'
+import { fadeUp } from '../lib/motion'
+
+// ─── Inline mockup components ────────────────────────────────────────────────
+// These are Helix-specific UI illustrations, not reusable blocks.
 
 function HelixDashboard() {
   return (
@@ -173,27 +178,7 @@ function FlowFrame({ bg, ratio, children, caption, label }) {
   )
 }
 
-function ProcessCard({ num, heading, body }) {
-  return (
-    <div style={{ background: '#f3edd9', border: '1px solid rgba(44,62,68,.18)', borderRadius: 10, padding: '28px 26px', display: 'flex', flexDirection: 'column', gap: 14, minHeight: 300 }}>
-      <span style={{ fontFamily: '"JetBrains Mono",monospace', fontSize: 11, letterSpacing: '.2em', color: '#a44820', textTransform: 'uppercase' }}>{num}</span>
-      <h4 style={{ margin: 0, fontWeight: 500, fontSize: 28, lineHeight: 1.1, color: '#2c4a52', fontStyle: 'italic' }}>{heading}</h4>
-      <p style={{ margin: 0, fontSize: 18, lineHeight: 1.5, color: '#2c3e44', textWrap: 'pretty' }}>{body}</p>
-    </div>
-  )
-}
-
-function StatCard({ number, label, context }) {
-  return (
-    <div style={{ border: '1px solid rgba(44,62,68,.18)', borderRadius: 10, padding: '32px 26px 26px', background: '#f3edd9', display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <div style={{ fontSize: 64, lineHeight: .95, color: '#a44820', fontWeight: 500, letterSpacing: '-.01em' }} dangerouslySetInnerHTML={{ __html: number }} />
-      <div style={{ fontSize: 18, color: '#2c4a52', fontStyle: 'italic' }}>{label}</div>
-      <div style={{ marginTop: 12, fontFamily: '"JetBrains Mono",monospace', fontSize: 10, letterSpacing: '.16em', textTransform: 'uppercase', color: '#5a6b71' }}>{context}</div>
-    </div>
-  )
-}
-
-const fadeUp = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }
+// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function Helix() {
   return (
@@ -240,57 +225,63 @@ export default function Helix() {
         <span>Helix · Web</span>
       </div>
 
-      {/* overview */}
-      <motion.section className="max-w-[1180px] mx-auto px-11 pt-[120px]" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}>
-        <div className="font-mono text-[11px] tracking-[.2em] text-rust-deep uppercase mb-[18px] flex items-center gap-[10px]">
-          <span style={{ width: 22, height: 22, border: '1px solid #a44820', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>01</span>
-          Overview
-        </div>
-        <h2 className="font-medium text-[46px] leading-[1.04] m-0 mb-9 text-porter max-w-[780px] tracking-[-0.005em]" style={{ textWrap: 'balance' }}>
-          A patchwork of <em className="italic text-rust-deep">clipboards, spreadsheets,</em> and Slack threads — for work the company couldn't afford to get wrong.
-        </h2>
-        <div className="grid gap-[64px]" style={{ gridTemplateColumns: '1.1fr 1fr' }}>
-          <div>
+      {/* overview — TwoColText: heading left, details right */}
+      <TwoColText
+        sectionNum="01"
+        sectionLabel="Overview"
+        heading={
+          <>
+            A patchwork of <em className="italic text-rust-deep">clipboards, spreadsheets,</em> and Slack threads — for work the company couldn't afford to get wrong.
+          </>
+        }
+        colRatio="balanced"
+        left={
+          <>
             <p className="text-[22px] leading-[1.5] text-ink m-0 mb-[14px]">Helix operates contact-center and field-services sites in twenty countries. Their quality team was running everything by hand: a printed checklist on a clipboard, a shared spreadsheet that took an hour to merge each Friday, and a Slack channel for the parts nobody could agree on.</p>
             <p className="text-[22px] leading-[1.5] text-ink m-0">The pitch was straightforward: build the platform their team had been improvising for years. The harder problem, once we started, was that "the platform" looked completely different from each chair around the table.</p>
-          </div>
-          <div className="font-mono text-[12px] text-ink-soft leading-[1.9] tracking-[.04em]">
-            <dl className="m-0 grid gap-y-[8px] gap-x-[16px]" style={{ gridTemplateColumns: '1fr 1.6fr' }}>
-              {[['Engagement','14 months · in-house'],['Stage','0 → 1 · then 1 → scale'],['Users','~1,400 reviewers'],['Surfaces','Web app · Inspector mobile · API'],['Stack','React · Rails · Postgres'],['Status','Live in 4 regions']].map(([k,v])=>(
-                <>
-                  <dt key={`k-${k}`} className="text-ink-soft text-[10px] tracking-[.18em] uppercase self-end pb-[6px] border-b border-rule">{k}</dt>
-                  <dd key={`v-${k}`} className="m-0 text-porter text-[13px] tracking-[.05em] pb-[6px] border-b border-rule">{v}</dd>
-                </>
-              ))}
-            </dl>
-          </div>
-        </div>
-      </motion.section>
+          </>
+        }
+        right={
+          <dl className="m-0 grid gap-y-[8px] gap-x-[16px] font-mono text-[12px] text-ink-soft leading-[1.9] tracking-[.04em]" style={{ gridTemplateColumns: '1fr 1.6fr' }}>
+            {[['Engagement','14 months · in-house'],['Stage','0 → 1 · then 1 → scale'],['Users','~1,400 reviewers'],['Surfaces','Web app · Inspector mobile · API'],['Stack','React · Rails · Postgres'],['Status','Live in 4 regions']].map(([k,v])=>(
+              <>
+                <dt key={`k-${k}`} className="text-ink-soft text-[10px] tracking-[.18em] uppercase self-end pb-[6px] border-b border-rule">{k}</dt>
+                <dd key={`v-${k}`} className="m-0 text-porter text-[13px] tracking-[.05em] pb-[6px] border-b border-rule">{v}</dd>
+              </>
+            ))}
+          </dl>
+        }
+      />
 
       {/* pull quote */}
-      <section className="max-w-[1180px] mx-auto px-11 pt-[120px]">
-        <div className="max-w-[980px]">
-          <blockquote className="m-0 font-serif italic text-[44px] leading-[1.18] text-porter relative pl-[46px]" style={{ textWrap: 'balance' }}>
-            <span className="absolute left-0 top-[-4px] font-serif not-italic text-rust text-[90px] leading-[.8]">"</span>
-            If your QA team is the slowest, loudest part of your operation, you've already lost. We needed the inspection to feel like part of the work, not an audit of it.
-          </blockquote>
-          <div className="mt-6 font-mono text-[11px] tracking-[.18em] uppercase text-ink-soft">— Maya Reyes · Director of Quality, Helix</div>
-        </div>
-      </section>
+      <PullQuote
+        quote="If your QA team is the slowest, loudest part of your operation, you've already lost. We needed the inspection to feel like part of the work, not an audit of it."
+        attribution="Maya Reyes · Director of Quality, Helix"
+      />
 
-      {/* process */}
-      <motion.section className="max-w-[1180px] mx-auto px-11 pt-[120px]" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}>
-        <div className="font-mono text-[11px] tracking-[.2em] text-rust-deep uppercase mb-[18px] flex items-center gap-[10px]">
-          <span style={{ width: 22, height: 22, border: '1px solid #a44820', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>02</span>
-          Process
-        </div>
-        <h2 className="font-medium text-[46px] leading-[1.04] m-0 mb-9 text-porter max-w-[780px]">Three months of listening before we drew a single screen.</h2>
-        <div className="grid grid-cols-3 gap-7">
-          <ProcessCard num="01 · Field study" heading="Twelve sites, four time zones." body="We rode along on inspections in Manila, Lisbon, Mexico City, and Tokyo. The clipboard turned out to be a feature, not a bug — reviewers loved the speed and the lack of judgement from a manager-facing tool." />
-          <ProcessCard num="02 · Rubric audit" heading="We mapped 400 scoring questions into 38." body="Most rubrics had drifted over a decade of well-meaning additions. We worked with quality leads to consolidate and version them — a small change that paid back across every screen." />
-          <ProcessCard num="03 · Two-track build" heading="A reviewer app, then a leader's dashboard." body="We shipped the inspector tool first, on mobile, and only added the management layer once we knew what data was real. The dashboard was much smaller as a result." />
-        </div>
-      </motion.section>
+      {/* process — ThreeColCards */}
+      <ThreeColCards
+        sectionNum="02"
+        sectionLabel="Process"
+        heading="Three months of listening before we drew a single screen."
+        cards={[
+          {
+            label: '01 · Field study',
+            heading: 'Twelve sites, four time zones.',
+            body: 'We rode along on inspections in Manila, Lisbon, Mexico City, and Tokyo. The clipboard turned out to be a feature, not a bug — reviewers loved the speed and the lack of judgement from a manager-facing tool.',
+          },
+          {
+            label: '02 · Rubric audit',
+            heading: 'We mapped 400 scoring questions into 38.',
+            body: 'Most rubrics had drifted over a decade of well-meaning additions. We worked with quality leads to consolidate and version them — a small change that paid back across every screen.',
+          },
+          {
+            label: '03 · Two-track build',
+            heading: 'A reviewer app, then a leader\'s dashboard.',
+            body: 'We shipped the inspector tool first, on mobile, and only added the management layer once we knew what data was real. The dashboard was much smaller as a result.',
+          },
+        ]}
+      />
 
       {/* key flows */}
       <section className="max-w-[1180px] mx-auto px-11 pt-[120px]">
@@ -323,31 +314,47 @@ export default function Helix() {
         </div>
       </section>
 
-      {/* results */}
-      <motion.section className="max-w-[1180px] mx-auto px-11 pt-[120px]" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}>
-        <div className="font-mono text-[11px] tracking-[.2em] text-rust-deep uppercase mb-[18px] flex items-center gap-[10px]">
-          <span style={{ width: 22, height: 22, border: '1px solid #a44820', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>04</span>
-          Results
-        </div>
-        <h2 className="font-medium text-[46px] leading-[1.04] m-0 mb-9 text-porter max-w-[780px]">After a year, the spreadsheet was retired in every region.</h2>
-        <div className="grid grid-cols-4 gap-6">
-          <StatCard number='63<span style="font-size:30px;vertical-align:top;margin-left:2px;color:#c95c2a">%</span>' label="faster review-to-feedback loop" context="Median 6.2 days → 2.3 days" />
-          <StatCard number="1,400" label="active reviewers, monthly" context="Across 4 continents · 12 languages" />
-          <StatCard number="38" label="scoring questions, down from 400" context="Rubric audit · v2.0" />
-          <StatCard number='+18<span style="font-size:30px;vertical-align:top;margin-left:2px;color:#c95c2a">pts</span>' label="CSAT lift on coached cohorts" context="A/B vs. control · 90 days" />
-        </div>
-      </motion.section>
+      {/* results — StatGrid */}
+      <StatGrid
+        sectionNum="04"
+        sectionLabel="Results"
+        heading="After a year, the spreadsheet was retired in every region."
+        stats={[
+          {
+            number: '63<span style="font-size:30px;vertical-align:top;margin-left:2px;color:#c95c2a">%</span>',
+            label: 'faster review-to-feedback loop',
+            context: 'Median 6.2 days → 2.3 days',
+          },
+          {
+            number: '1,400',
+            label: 'active reviewers, monthly',
+            context: 'Across 4 continents · 12 languages',
+          },
+          {
+            number: '38',
+            label: 'scoring questions, down from 400',
+            context: 'Rubric audit · v2.0',
+          },
+          {
+            number: '+18<span style="font-size:30px;vertical-align:top;margin-left:2px;color:#c95c2a">pts</span>',
+            label: 'CSAT lift on coached cohorts',
+            context: 'A/B vs. control · 90 days',
+          },
+        ]}
+      />
 
-      {/* reflection */}
-      <div className="mt-[140px] border-t border-b border-rule py-[110px]" style={{ background: '#f3edd9' }}>
-        <div className="max-w-[1180px] mx-auto px-11 grid gap-[64px] items-start" style={{ gridTemplateColumns: '1fr 1.4fr' }}>
-          <h3 className="m-0 font-medium text-[36px] leading-[1.1] text-porter italic">What I'd keep, what I'd change.</h3>
-          <div>
+      {/* reflection — TwoColText bleed variant */}
+      <TwoColText
+        headingLevel="h3"
+        heading="What I'd keep, what I'd change."
+        bleedBg="#f3edd9"
+        right={
+          <>
             <p className="text-[22px] leading-[1.5] m-0 mb-[14px]">The instinct to ship the reviewer app first — before the management dashboard ever existed — was the single decision the whole project rests on. We made a hundred small tools that the people doing the work actually wanted, and a much smaller, more honest set of charts for the people watching it.</p>
             <p className="text-[22px] leading-[1.5] m-0">If I started again, I'd push earlier on what we now call "calm scoring" — the idea that a rubric should feel like a checklist, not a test. We added that pattern in v2 and it changed how people felt about the app overnight. It should have been there in v1.</p>
-          </div>
-        </div>
-      </div>
+          </>
+        }
+      />
 
       {/* next */}
       <div className="max-w-[1180px] mx-auto px-11 pt-[120px] pb-[80px] flex items-end justify-between gap-[40px] border-b border-rule">

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import SectionHead from './SectionHead'
 import ProjectCard from './ProjectCard'
+import CalibrationsMock from './mocks/CalibrationsMock'
 import SaasDashboard from './mocks/SaasDashboard'
 import AccountRecoveryPhone from './mocks/AccountRecoveryPhone'
 import MapMock from './mocks/MapMock'
@@ -13,7 +14,8 @@ const cardVariants = {
 
 export default function CaseStudies() {
   const cards = [
-    { href: '/case-studies/helix', bgClass: 'bg-[#2f6fd6]', title: 'Meta – Quality Management System', mock: <SaasDashboard /> },
+    { href: '/case-studies/meta', bgClass: 'bg-[#4481ef]', title: 'Meta–Quality Management System', mock: <CalibrationsMock />, arrowLight: true },
+    { href: '/case-studies/helix', bgClass: 'bg-[#2f6fd6]', title: 'Helix–Quality Management System', mock: <SaasDashboard />, arrowLight: true },
     { href: '#', bgClass: 'bg-[#1aa861]', title: 'Northwind Pay — Account Recovery', mock: <AccountRecoveryPhone /> },
     { href: '#', bgClass: 'bg-[#1c2730]', title: 'Drayage — Logistics Operations', mock: <MapMock />, arrowLight: true },
     { href: '#', bgClass: 'bg-[#46506a]', title: 'Crescent Capital — Investor Onboarding', mock: <InvestorPhone /> },
