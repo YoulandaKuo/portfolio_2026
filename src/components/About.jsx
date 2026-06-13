@@ -6,8 +6,7 @@ export default function About() {
     <section className="max-w-[1280px] mx-auto px-11 pt-[120px]" id="about">
       <SectionHead title="About" />
       <motion.div
-        className="grid gap-[60px] items-start"
-        style={{ gridTemplateColumns: '1.2fr 1fr' }}
+        className="grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-[60px] items-start"
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-60px' }}

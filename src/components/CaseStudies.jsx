@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import SectionHead from './SectionHead'
 import ProjectCard from './ProjectCard'
-import CalibrationsMock from './mocks/CalibrationsMock'
 import SaasDashboard from './mocks/SaasDashboard'
 import AccountRecoveryPhone from './mocks/AccountRecoveryPhone'
 import MapMock from './mocks/MapMock'
@@ -14,7 +13,7 @@ const cardVariants = {
 
 export default function CaseStudies() {
   const cards = [
-    { href: '/case-studies/meta', bgClass: 'bg-[#4481ef]', title: 'Meta–Quality Management System', mock: <CalibrationsMock />, arrowLight: true },
+    { href: '/case-studies/meta', bgClass: 'bg-[#4481ef]', title: 'Meta–Quality Management System', mock: <img src="/assets/meta-calibration.png" alt="" className="absolute inset-0 w-full h-full object-cover object-top" />, arrowLight: true },
     { href: '/case-studies/helix', bgClass: 'bg-[#2f6fd6]', title: 'Helix–Quality Management System', mock: <SaasDashboard />, arrowLight: true },
     { href: '#', bgClass: 'bg-[#1aa861]', title: 'Northwind Pay — Account Recovery', mock: <AccountRecoveryPhone /> },
     { href: '#', bgClass: 'bg-[#1c2730]', title: 'Drayage — Logistics Operations', mock: <MapMock />, arrowLight: true },
@@ -24,7 +23,7 @@ export default function CaseStudies() {
   return (
     <section className="max-w-[1280px] mx-auto px-11 pt-[120px]" id="case-studies">
       <SectionHead title="Selected Case Studies" />
-      <div className="grid grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {cards.map((card, i) => (
           <motion.div
             key={card.title}

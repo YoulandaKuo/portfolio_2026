@@ -20,7 +20,7 @@ export default function SideProjects() {
   return (
     <section className="max-w-[1280px] mx-auto px-11 pt-[120px]" id="side-projects">
       <SectionHead title="Vibe-Coded Side Projects" />
-      <div className="grid grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {cards.map((card, i) => (
           <motion.div
             key={card.title}
