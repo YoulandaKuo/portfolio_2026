@@ -105,7 +105,7 @@ export default function StatGrid({
           {heading}
         </h2>
       )}
-      <div className={`grid grid-cols-2 gap-4 md:gap-6 ${desktopCols}`}>
+      <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 ${desktopCols}`}>
         {stats.map((stat, i) => (
           <StatCard key={i} {...stat} />
         ))}
