@@ -10,6 +10,7 @@ import {
   StatGrid,
   PullQuote,
   FigureBlock,
+  NarrativeText,
 } from '../components/blocks'
 import { fadeUp } from '../lib/motion'
 
@@ -94,89 +95,54 @@ export default function Meta() {
       {/* Section 01 — Background */}
       <TwoColText
         sectionNum="01"
-        sectionLabel="Background"
-        heading="Quality at the scale of Meta."
+        sectionLabel="The challenge"
+        heading="Redesigning for Fairness at Scale"
         right={
           <>
-            <p className="text-[22px] leading-[1.5] text-ink m-0 mb-5" style={{ textWrap: 'pretty' }}>
-              Meta's support organization spans thousands of contractors and internal agents across EMEA, North America, and SEA. The QMS is the backbone program managers rely on to monitor performance, flag issues, and maintain quality alignment across queues. When I joined, the product's core review flow was stable — but one critical workflow was still entirely manual: calibration.
-            </p>
             <p className="text-[22px] leading-[1.5] text-ink m-0" style={{ textWrap: 'pretty' }}>
-              Calibration is how senior agents collectively decide what a perfect score looks like. Done well, it's the engine that keeps quality standards consistent across programs, regions, and vendors. At Meta's scale, running it through spreadsheets and email chains was unsustainable.
+              The existing calibration process at Meta was a manual, fragmented operation that struggled to keep pace with the organisation’s scale. Because each program (e.g., WhatsApp, Instagram, Facebook) managed reviews independently, the lack of a unified workflow led to three critical bottlenecks:
             </p>
           </>
         }
       />
 
-      {/* Section 02 — The Problem */}
+      {/* Section 01-2 The Problem */}
       <ThreeColCards
-        sectionNum="02"
-        sectionLabel="The Problem"
-        heading="Manual calibration created three systemic failures."
         cards={[
           {
-            label: '01 · No system of record',
-            heading: 'The spreadsheet was the process.',
-            body: 'Each program maintained its own tracking document. There was no source of truth for calibration status, no shared history, and no way for QMS leadership to see the state of calibration across queues.',
+            heading: 'Operational Inefficiency',
+            body: 'Manual data entry and cross-referencing were time-consuming',
           },
           {
-            label: '02 · Slow cycle times',
-            heading: 'Rounds took 3–5 days to close.',
-            body: "Senior agents had to be manually assigned, reminded by email, and chased for responses. The process couldn't keep up with weekly queue volumes, leaving calibration perpetually behind.",
+            heading: 'Subjective Bias',
+            body: 'Reviewers often knew when they were being "calibrated", leading to human bias'
           },
           {
-            label: '03 · Scoring divergence',
-            heading: 'No anchor for consistency.',
-            body: 'Without a shared interface or rubric, different programs interpreted identical conversations differently. Calibration was creating the inconsistency it was meant to fix.',
+            heading: 'Hard to scale',
+            body: "The manual process made it hard to scale standards across Meta’s support ecosystem.",
           },
         ]}
       />
 
-      {/* Section 03 — Discovery */}
-      <ThreeColCards
-        sectionNum="03"
-        sectionLabel="Discovery"
-        heading="Three methods to understand the workflow before proposing a solution."
-        cards={[
-          {
-            label: '01 · Stakeholder interviews',
-            heading: 'Twelve sessions across three regions.',
-            body: 'I ran structured interviews with program managers, senior agents, and QMS leads across EMEA, NA, and SEA to map the current workflow and surface the highest-friction points in the calibration process.',
-          },
-          {
-            label: '02 · Calibration shadowing',
-            heading: 'Four live sessions, end-to-end.',
-            body: 'I observed calibration sessions from assignment through score reconciliation. The same conversation could take anywhere from 20 minutes to 3 hours to resolve — not because of the content, but because of coordination failures.',
-          },
-          {
-            label: '03 · Jobs-to-be-done mapping',
-            heading: 'Not a scoring problem.',
-            body: "Working with the PM, we translated research into JTBD statements. The key insight: calibration wasn't broken because of the rubric — it was broken because of coordination and visibility. That reframing shaped everything that followed.",
-          },
-        ]}
-      />
-
-      {/* Pull quote */}
-      <PullQuote
-        quote="The spreadsheet wasn't just slow — it was invisible. By the time we'd chased everyone down, the feedback was already stale."
-        attribution="Kenji T. · QMS Program Lead, EMEA"
-      />
-
-      {/* Section 04 — The Solution */}
+      {/* Section 02 — The Solution */}
       <TwoColText
-        sectionNum="04"
+        sectionNum="02"
         sectionLabel="The Solution"
-        heading="An automated calibration workflow, inside QMS."
+        heading="A Unified Standard for Meta’s Global Support"
         right={
           <>
             <p className="text-[22px] leading-[1.5] text-ink m-0 mb-5" style={{ textWrap: 'pretty' }}>
-              The new calibration flow replaces the spreadsheet with a structured, trackable system inside QMS. Program managers schedule calibrations, select the target conversation, and the system automatically assigns expert reviewers from the queue's senior agent pool.
-            </p>
-            <p className="text-[22px] leading-[1.5] text-ink m-0" style={{ textWrap: 'pretty' }}>
-              Each expert scores independently through a guided rubric — without seeing each other's responses until all scores are submitted. The system then flags significant discrepancies and surfaces them for live discussion. I designed the full workflow end-to-end: the manager dashboard, the expert scoring interface, and the reconciliation view.
+              To solve the fragmentation across different programs, I designed a centralized calibration feature directly within Meta’s Quality Management System (QMS). The goal was to replace isolated spreadsheets and manual workflows with a single, automated source of truth that could be adopted by every program.
             </p>
           </>
         }
+      />
+
+      {/* Solution sub-section */}
+      <NarrativeText
+        headingLevel="h3"
+        heading="Global Oversight for Program Managers"
+        body="The Calibrations Dashboard provides a unified command centre for program managers to monitor their global operations. By aggregating complex data into a single, intuitive view, managers can easily track the real-time progress of each calibration cycle."
       />
 
       {/* Fig. 02 — Expert scoring interface */}
@@ -187,20 +153,16 @@ export default function Meta() {
         project="Meta · Web"
       />
 
-      {/* Section 05 — Reflection */}
+      {/* Section 03 — Reflection */}
       <TwoColText
         headingLevel="h3"
-        sectionNum="05"
-        sectionLabel="Reflection"
-        heading="What I'd keep, what I'd change."
+        sectionNum="03"
+        heading="Key takeaway"
         bleedBg="#f3edd9"
         right={
           <>
             <p className="text-[22px] leading-[1.5] m-0 mb-5">
-              The decision to anchor the flow around expert independence — ensuring reviewers couldn't see each other's scores until all were submitted — turned out to be the design's most defensible constraint. It took political will to hold that line through several stakeholder reviews, but it was the right call.
-            </p>
-            <p className="text-[22px] leading-[1.5] m-0">
-              If I started again, I'd invest more in the reconciliation experience. We shipped a workable version, but resolving a disputed score is a deeply social process — the tool surfaces the conflict well, but facilitating the resolution is a harder, more nuanced problem that deserved more space in the design.
+              The Meta QMS calibration project demonstrated how to scale fairness and efficiency across a global organisation. By replacing fragmented, manual spreadsheets with a unified workflow, we scaled to 5 major programs and reduced calibration time by 41%.
             </p>
           </>
         }

@@ -27,7 +27,7 @@ function Card({ media, label, heading, body }) {
       )}
       <div
         className="flex flex-col gap-[14px]"
-        style={{ padding: '28px 26px', minHeight: media ? 0 : 240 }}
+        style={{ padding: '28px 26px' }}
       >
         {label && (
           <span className="font-mono text-[11px] tracking-[.2em] text-rust-deep uppercase">
