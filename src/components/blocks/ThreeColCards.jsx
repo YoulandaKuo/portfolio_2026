@@ -23,7 +23,7 @@ function Card({ media, label, heading, body }) {
       }}
     >
       {media && (
-        <div className="w-full aspect-video overflow-hidden">{media}</div>
+        <div className="w-full aspect-square overflow-hidden">{media}</div>
       )}
       <div
         className="flex flex-col gap-[14px]"
@@ -69,6 +69,7 @@ export default function ThreeColCards({
   sectionNum,
   sectionLabel,
   heading,
+  headingLevel: Tag = 'h2',
   cards = [],
 }) {
   return (
@@ -81,11 +82,15 @@ export default function ThreeColCards({
     >
       {sectionLabel && <SectionLabel num={sectionNum} label={sectionLabel} />}
       {heading && (
-        <h2
-          className="font-medium text-[30px] md:text-[46px] leading-[1.04] m-0 mb-9 text-porter max-w-[780px]"
+        <Tag
+          className={`font-medium leading-[1.04] m-0 mb-9 text-porter max-w-[780px] ${
+            Tag === 'h3'
+              ? 'text-[28px] md:text-[36px]'
+              : 'text-[30px] md:text-[46px]'
+          }`}
         >
           {heading}
-        </h2>
+        </Tag>
       )}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-7">
         {cards.map((card, i) => (

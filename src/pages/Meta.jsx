@@ -2,8 +2,6 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
-import CalibrationsMock from '../components/mocks/CalibrationsMock'
-import ScoringMock from '../components/mocks/ScoringMock'
 import {
   TwoColText,
   ThreeColCards,
@@ -33,7 +31,7 @@ export default function Meta() {
         className="max-w-[1180px] mx-auto px-11 pt-[30px] pb-[50px] border-b border-rule flex flex-col gap-8"
         variants={fadeUp} initial="hidden" animate="visible"
       >
-        <h1 className="m-0 font-medium text-porter leading-[.98] tracking-[-0.01em]" style={{ fontSize: 'clamp(48px,7vw,96px)', textWrap: 'balance' }}>
+        <h1 className="m-0 font-medium text-porter leading-[.98] tracking-[-0.01em]" style={{ fontSize: 'clamp(48px,7vw,64px)', textWrap: 'balance' }}>
           Meta — Quality Management System
         </h1>
         <p className="text-[24px] leading-[1.4] text-ink m-0" style={{ textWrap: 'pretty' }}>
@@ -43,7 +41,7 @@ export default function Meta() {
 
       {/* meta strip */}
       <div className="max-w-[1180px] mx-auto px-11 py-9 border-b border-rule grid gap-[30px] font-mono text-[11px] tracking-[0.14em] uppercase" style={{ gridTemplateColumns: 'repeat(3,1fr)' }}>
-        {[['Role','Product Designer'],['Year','2022 — 2023'],['Type','B2B · Web App']].map(([k,v])=>(
+        {[['Role','Product Designer'],['Year','2023'],['Type','B2B · Web App']].map(([k,v])=>(
           <div key={k}>
             <span className="block text-ink-soft text-[10px] tracking-[.18em] mb-[6px]">{k}</span>
             <span className="text-porter text-[13px] tracking-[.06em]">{v}</span>
@@ -54,10 +52,8 @@ export default function Meta() {
       {/* Fig. 01 — Cover */}
       <FigureBlock
         variant="cover"
-        media={<CalibrationsMock />}
-        bg="#4481ef"
-        caption="Fig. 01 — Calibrations dashboard, calibration management overview."
-        project="Meta · Web"
+        media={<img src="/assets/meta-calibration-cover.png" alt="Calibrations dashboard overview" className="w-full h-full object-cover object-top" />}
+        caption="The new Quality Management System (QMS)"
       />
 
       {/* Summary */}
@@ -138,19 +134,106 @@ export default function Meta() {
         }
       />
 
-      {/* Solution sub-section */}
+      {/* Solution sub-section 1*/}
       <NarrativeText
         headingLevel="h3"
         heading="Global Oversight for Program Managers"
         body="The Calibrations Dashboard provides a unified command centre for program managers to monitor their global operations. By aggregating complex data into a single, intuitive view, managers can easily track the real-time progress of each calibration cycle."
       />
 
-      {/* Fig. 02 — Expert scoring interface */}
+      {/* Fig. 02 */}
       <FigureBlock
-        media={<ScoringMock />}
-        bg="#2c4a52"
-        caption="Fig. 02 — Expert scoring interface, guided rubric with independent review."
-        project="Meta · Web"
+        media={<img src="/assets/meta-calibration-fig02.png" alt="Expert scoring interface" className="w-full h-full object-cover object-top" />}
+        caption="Calibration dashboard for program managers"
+      />
+
+      {/* UI Highlights 1*/}
+      <ThreeColCards
+        heading="UI highlights"
+        headingLevel="h3"
+        cards={[
+          {
+            media: (
+              <img
+                src="/assets/meta-calibration-ui-highlights-1-1.png"
+                alt="Calibration UI highlight — start a new calibration"
+                className="w-full h-full object-cover object-top"
+              />
+            ),
+            body: "I transitioned the calibration process from external spreadsheets to a built-in function within the QMS. Users can now initiate and manage review cycles directly where they handle their daily support operations.",
+          },
+          {
+            media: (
+              <img
+                src="/assets/meta-calibration-ui-highlights-1-2.png"
+                alt="Calibration UI highlight — quality analyst status"
+                className="w-full h-full object-cover object-top"
+              />
+            ),
+            body: "The status bars allow program managers to immediately see the progress of each calibration cycle. This view simplifies the oversight of multiple global queues, ensuring deadlines are met across the entire organisation.",
+          },
+          {
+            media: (
+              <img
+                src="/assets/meta-calibration-ui-highlights-1-3.png"
+                alt="Calibration UI highlight — calibration case ID"
+                className="w-full h-full object-cover object-top"
+              />
+            ),
+            body: `I designed a "Smart Reminder" feature that automatically detects and flags if a selected case has already been reviewed. This preventative UI detail ensures data integrity and the consistency of the calibration results.`,
+          },
+        ]}
+      />
+
+      {/* Solution sub-section 2*/}
+      <NarrativeText
+        headingLevel="h3"
+        heading="The Senior Agent Experience: A Unified Audit Environment"
+        body="By integrating the full audit workflow into QMS, we eliminated the need for agents to toggle between multiple tools and spreadsheets. This streamlined environment was the primary driver for the 41% reduction in calibration time, allowing senior agents to focus on the nuance of the conversation rather than administrative overhead."
+      />
+
+      {/* Fig. 03 */}
+      <FigureBlock
+        media={<img src="/assets/meta-calibration-cover.png" alt="Calibrations dashboard overview" className="w-full h-full object-cover object-top" />}
+        caption="The “Create new audit” screen for senior agents"
+      />
+
+      {/* UI Highlights 2*/}
+      <ThreeColCards
+        heading="UI highlights"
+        headingLevel="h3"
+        cards={[
+          {
+            media: (
+              <img
+                src="/assets/meta-calibration-ui-highlights-2-1.png"
+                alt="Calibration UI highlight — start a new calibration"
+                className="w-full h-full object-cover object-top"
+              />
+            ),
+            body: `The system automatically assigns cases to auditors, removing the ability to "cherry-pick" easy or familiar interactions. This ensure a truly random and representative sample of agent performance, which is critical for maintaining high quality standards at Meta's scale.`,
+          },
+          {
+            media: (
+              <img
+                src="/assets/meta-calibration-ui-highlights-2-2.png"
+                alt="Calibration UI highlight — quality analyst status"
+                className="w-full h-full object-cover object-top"
+              />
+            ),
+            body: "By hosting the audit forms within QMS, we empowered individual programs to manage their own criteria while maintaining a unified technical framework. This ensured that every agent is evaluated through a consistent process that can scale as new programs are onboarded.",
+          },
+          {
+            media: (
+              <img
+                src="/assets/meta-calibration-ui-highlights-2-3.png"
+                alt="Calibration UI highlight — calibration case ID"
+                className="w-full h-full object-cover object-top"
+              />
+            ),
+            body: `To eliminate "observer bias," the UI hides the fact that an audit is a calibration until the final submission dialog. By revealing the calibration status only at the end, we ensure senior agents perform an independent, honest evaluation before being notified that their score will be used for program-wide alignment.`,
+          },
+        ]}
       />
 
       {/* Section 03 — Reflection */}

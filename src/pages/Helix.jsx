@@ -199,7 +199,7 @@ export default function Helix() {
         className="max-w-[1180px] mx-auto px-11 pt-[30px] pb-[50px] border-b border-rule flex flex-col gap-8"
         variants={fadeUp} initial="hidden" animate="visible"
       >
-        <h1 className="m-0 font-medium text-porter leading-[.98] tracking-[-0.01em]" style={{ fontSize: 'clamp(48px,7vw,96px)', textWrap: 'balance' }}>
+        <h1 className="m-0 font-medium text-porter leading-[.98] tracking-[-0.01em]" style={{ fontSize: 'clamp(48px,7vw,64px)', textWrap: 'balance' }}>
           Helix — a quality system for teams that <em className="italic text-rust-deep font-medium">can't afford to miss</em>.
         </h1>
         <p className="text-[24px] leading-[1.4] text-ink m-0" style={{ textWrap: 'pretty' }}>
