@@ -29,8 +29,8 @@ export default function FigureBlock({
 }) {
   const outerClass =
     variant === 'cover'
-      ? 'max-w-[1180px] mx-auto px-6 md:px-11 mt-[60px]'
-      : 'max-w-[1180px] mx-auto px-6 md:px-11 pt-[80px] md:pt-[120px]'
+      ? 'max-w-[1040px] mx-auto px-6 md:px-11 mt-[60px]'
+      : 'max-w-[1040px] mx-auto px-6 md:px-11 pt-[80px] md:pt-[120px]'
 
   return (
     <motion.div

@@ -20,12 +20,9 @@ function StatCard({ number, label, context }) {
 
   return (
     <div
-      className="flex flex-col"
+      className="flex flex-col text-center"
       style={{
-        border: '1px solid rgba(44,62,68,.18)',
-        borderRadius: 10,
         padding: '26px',
-        background: '#f3edd9',
         gap: 8,
       }}
     >
@@ -91,7 +88,7 @@ export default function StatGrid({
 
   return (
     <motion.section
-      className="max-w-[1180px] mx-auto px-6 md:px-11 pt-[80px] md:pt-[120px]"
+      className="max-w-[1040px] mx-auto px-6 md:px-11 pt-[80px] md:pt-[120px]"
       variants={fadeUp}
       initial="hidden"
       whileInView="visible"
@@ -100,7 +97,7 @@ export default function StatGrid({
       {sectionLabel && <SectionLabel num={sectionNum} label={sectionLabel} />}
       {heading && (
         <h2
-          className="font-medium text-[30px] md:text-[46px] leading-[1.04] m-0 mb-9 text-porter max-w-[780px]"
+          className="font-medium text-[28px] md:text-[40px] leading-[1.2] m-0 mb-9 text-porter max-w-[780px]"
         >
           {heading}
         </h2>

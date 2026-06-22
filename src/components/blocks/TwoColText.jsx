@@ -30,14 +30,14 @@ export default function TwoColText({
   const H = headingLevel
   const headingSize =
     headingLevel === 'h3'
-      ? 'text-[28px] md:text-[36px]'
-      : 'text-[30px] md:text-[46px]'
+      ? 'text-[24px] md:text-[32px]'
+      : 'text-[28px] md:text-[40px]'
 
   // Static class strings so Tailwind's scanner picks them up
   const gridCols =
     colRatio === 'balanced'
       ? 'grid-cols-1 md:grid-cols-[1.1fr_1fr]'
-      : 'grid-cols-1 md:grid-cols-[1fr_1.4fr]'
+      : 'grid-cols-1 md:grid-cols-[4fr_6fr]'
 
   const inner = (
     <>
@@ -45,7 +45,7 @@ export default function TwoColText({
       <div className={`grid gap-10 items-start md:gap-[64px] ${gridCols}`}>
         <div>
           <H
-            className={`font-medium ${headingSize} leading-[1.04] m-0 text-porter tracking-[-0.005em]`}
+            className={`font-medium ${headingSize} leading-[1.2] m-0 text-porter tracking-[-0.005em]`}
             style={{ textWrap: 'balance' }}
           >
             {heading}
@@ -67,14 +67,14 @@ export default function TwoColText({
         whileInView="visible"
         viewport={{ once: true, margin: '-60px' }}
       >
-        <div className="max-w-[1180px] mx-auto px-6 md:px-11">{inner}</div>
+        <div className="max-w-[1040px] mx-auto px-6 md:px-11">{inner}</div>
       </motion.section>
     )
   }
 
   return (
     <motion.section
-      className="max-w-[1180px] mx-auto px-6 md:px-11 pt-[80px] md:pt-[120px]"
+      className="max-w-[1040px] mx-auto px-6 md:px-11 pt-[80px] md:pt-[120px]"
       variants={fadeUp}
       initial="hidden"
       whileInView="visible"

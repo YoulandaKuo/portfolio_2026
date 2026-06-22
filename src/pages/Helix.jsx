@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
-import { TwoColText, ThreeColCards, StatGrid, PullQuote } from '../components/blocks'
+import { TwoColText, ThreeColCards, StatGrid, PullQuote, NextCaseStudy } from '../components/blocks'
 import { fadeUp } from '../lib/motion'
 
 // ─── Inline mockup components ────────────────────────────────────────────────
@@ -186,7 +186,7 @@ export default function Helix() {
       <Nav homePrefix="/" />
 
       {/* breadcrumb */}
-      <div className="max-w-[1180px] mx-auto px-11 pt-12 font-mono text-[11px] tracking-[0.18em] uppercase text-ink-soft flex items-center gap-[14px]">
+      <div className="max-w-[1040px] mx-auto px-11 pt-12 font-mono text-[11px] tracking-[0.18em] uppercase text-ink-soft flex items-center gap-[14px]">
         <Link to="/" className="transition-colors hover:text-rust-deep">Portfolio</Link>
         <span className="opacity-50">/</span>
         <Link to="/#case-studies" className="transition-colors hover:text-rust-deep">Case Studies</Link>
@@ -196,31 +196,35 @@ export default function Helix() {
 
       {/* title */}
       <motion.header
-        className="max-w-[1180px] mx-auto px-11 pt-[30px] pb-[50px] border-b border-rule flex flex-col gap-8"
+        className="max-w-[1040px] mx-auto px-11 pt-[30px]"
         variants={fadeUp} initial="hidden" animate="visible"
       >
-        <h1 className="m-0 font-medium text-porter leading-[.98] tracking-[-0.01em]" style={{ fontSize: 'clamp(48px,7vw,64px)', textWrap: 'balance' }}>
-          Helix — a quality system for teams that <em className="italic text-rust-deep font-medium">can't afford to miss</em>.
-        </h1>
-        <p className="text-[24px] leading-[1.4] text-ink m-0" style={{ textWrap: 'pretty' }}>
-          A B2B platform that turns thousands of weekly site visits into a calm queue of reviews, scores, and follow-ups — used by ops teams across four continents.
-        </p>
+        <div className="pb-[50px] border-b border-rule flex flex-col gap-8">
+          <h1 className="m-0 font-medium text-porter leading-[.98] tracking-[-0.01em]" style={{ fontSize: 'clamp(48px,7vw,64px)', textWrap: 'balance' }}>
+            Helix — a quality system for teams that <em className="italic text-rust-deep font-medium">can't afford to miss</em>.
+          </h1>
+          <p className="text-[24px] leading-[1.4] text-ink m-0" style={{ textWrap: 'pretty' }}>
+            A B2B platform that turns thousands of weekly site visits into a calm queue of reviews, scores, and follow-ups — used by ops teams across four continents.
+          </p>
+        </div>
       </motion.header>
 
       {/* meta strip */}
-      <div className="max-w-[1180px] mx-auto px-11 py-9 border-b border-rule grid gap-[30px] font-mono text-[11px] tracking-[0.14em] uppercase" style={{ gridTemplateColumns: 'repeat(3,1fr)' }}>
-        {[['Role','Lead Product Designer'],['Year','2023 — 2024'],['Type','Web · iOS · Android']].map(([k,v])=>(
-          <div key={k}><span className="block text-ink-soft text-[10px] tracking-[.18em] mb-[6px]">{k}</span><span className="text-porter text-[13px] tracking-[.06em]">{v}</span></div>
-        ))}
+      <div className="max-w-[1040px] mx-auto px-11">
+        <div className="py-9 border-b border-rule grid gap-[30px] font-mono text-[11px] tracking-[0.14em] uppercase" style={{ gridTemplateColumns: 'repeat(3,1fr)' }}>
+          {[['Role','Lead Product Designer'],['Year','2023 — 2024'],['Type','Web · iOS · Android']].map(([k,v])=>(
+            <div key={k}><span className="block text-ink-soft text-[10px] tracking-[.18em] mb-[6px]">{k}</span><span className="text-porter text-[13px] tracking-[.06em]">{v}</span></div>
+          ))}
+        </div>
       </div>
 
       {/* cover */}
-      <div className="max-w-[1180px] mx-auto px-11 mt-[60px]">
+      <div className="max-w-[1040px] mx-auto px-11 mt-[60px]">
         <div className="rounded-lg overflow-hidden relative bg-[#2f6fd6]" style={{ aspectRatio: '16/9', boxShadow: '0 40px 80px -50px rgba(20,30,40,.45)' }}>
           <HelixDashboard />
         </div>
       </div>
-      <div className="max-w-[1180px] mx-auto px-11 mt-[18px] flex justify-between items-baseline font-mono text-[11px] tracking-[.16em] uppercase text-ink-soft">
+      <div className="max-w-[1040px] mx-auto px-11 mt-[18px] flex justify-between items-baseline font-mono text-[11px] tracking-[.16em] uppercase text-ink-soft">
         <span>Fig. 01 — Weekly review dashboard, default view for ops leads.</span>
         <span>Helix · Web</span>
       </div>
@@ -284,7 +288,7 @@ export default function Helix() {
       />
 
       {/* key flows */}
-      <section className="max-w-[1180px] mx-auto px-11 pt-[120px]">
+      <section className="max-w-[1040px] mx-auto px-11 pt-[120px]">
         <div className="font-mono text-[11px] tracking-[.2em] text-rust-deep uppercase mb-[18px] flex items-center gap-[10px]">
           <span style={{ width: 22, height: 22, border: '1px solid #a44820', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>03</span>
           Key flows
@@ -356,21 +360,11 @@ export default function Helix() {
         }
       />
 
-      {/* next */}
-      <div className="max-w-[1180px] mx-auto px-11 pt-[120px] pb-[80px] flex items-end justify-between gap-[40px] border-b border-rule">
-        <div>
-          <div className="font-mono text-[11px] tracking-[.2em] uppercase text-ink-soft mb-[14px]">Next case study</div>
-          <a href="#" className="inline-flex items-baseline gap-6 text-porter font-medium tracking-[-0.01em] transition-colors hover:text-rust-deep group" style={{ fontSize: 'clamp(40px,5.5vw,72px)', lineHeight: 1 }}>
-            <span>Northwind Pay — <em className="italic text-rust-deep font-medium">Account Recovery</em></span>
-            <span className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-rust text-white flex-shrink-0 translate-y-2 transition-transform group-hover:translate-x-[6px]">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5v7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </span>
-          </a>
-        </div>
-        <div className="font-mono text-[11px] tracking-[.16em] uppercase text-ink-soft text-right leading-[2]">
-          Fintech · Mobile<br />2023 · Lead designer
-        </div>
-      </div>
+      {/* Next case study */}
+      <NextCaseStudy
+        to="/case-studies/meta"
+        title={<>Northwind Pay — <em className="italic text-rust-deep font-medium">Account Recovery</em></>}
+      />
 
       <Footer />
     </>

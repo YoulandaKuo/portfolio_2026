@@ -7,7 +7,7 @@
  */
 export default function PullQuote({ quote, attribution }) {
   return (
-    <section className="max-w-[1180px] mx-auto px-6 md:px-11 pt-[80px] md:pt-[120px]">
+    <section className="max-w-[1040px] mx-auto px-6 md:px-11 pt-[80px] md:pt-[120px]">
       <div className="max-w-[980px]">
         <blockquote
           className="m-0 font-serif italic leading-[1.18] text-porter relative pl-[46px]"
