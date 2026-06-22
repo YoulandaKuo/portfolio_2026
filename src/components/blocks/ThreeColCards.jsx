@@ -16,8 +16,7 @@ function Card({ media, label, heading, body }) {
     <div
       className="flex flex-col"
       style={{
-        background: '#f3edd9',
-        border: '1px solid rgba(44,62,68,.18)',
+        background: '#ece1cb',
         borderRadius: 10,
         overflow: 'hidden',
       }}
@@ -74,7 +73,7 @@ export default function ThreeColCards({
 }) {
   return (
     <motion.section
-      className="max-w-[1180px] mx-auto px-6 md:px-11 pt-[80px] md:pt-[120px]"
+      className="max-w-[1040px] mx-auto px-6 md:px-11 pt-[80px] md:pt-[120px]"
       variants={fadeUp}
       initial="hidden"
       whileInView="visible"
@@ -83,10 +82,10 @@ export default function ThreeColCards({
       {sectionLabel && <SectionLabel num={sectionNum} label={sectionLabel} />}
       {heading && (
         <Tag
-          className={`font-medium leading-[1.04] m-0 mb-9 text-porter max-w-[780px] ${
+          className={`font-medium leading-[1.2] m-0 mb-9 text-porter max-w-[780px] ${
             Tag === 'h3'
-              ? 'text-[28px] md:text-[36px]'
-              : 'text-[30px] md:text-[46px]'
+              ? 'text-[24px] md:text-[32px]'
+              : 'text-[28px] md:text-[40px]'
           }`}
         >
           {heading}

@@ -5,10 +5,12 @@ import Footer from '../components/Footer'
 import {
   TwoColText,
   ThreeColCards,
+  ThreeColMedia,
   StatGrid,
   PullQuote,
   FigureBlock,
   NarrativeText,
+  NextCaseStudy,
 } from '../components/blocks'
 import { fadeUp } from '../lib/motion'
 
@@ -18,7 +20,7 @@ export default function Meta() {
       <Nav homePrefix="/" />
 
       {/* breadcrumb */}
-      <div className="max-w-[1180px] mx-auto px-11 pt-12 font-mono text-[11px] tracking-[0.18em] uppercase text-ink-soft flex items-center gap-[14px]">
+      <div className="max-w-[1040px] mx-auto px-11 pt-12 font-mono text-[11px] tracking-[0.18em] uppercase text-ink-soft flex items-center gap-[14px]">
         <Link to="/" className="transition-colors hover:text-rust-deep">Portfolio</Link>
         <span className="opacity-50">/</span>
         <Link to="/#case-studies" className="transition-colors hover:text-rust-deep">Case Studies</Link>
@@ -28,25 +30,29 @@ export default function Meta() {
 
       {/* title */}
       <motion.header
-        className="max-w-[1180px] mx-auto px-11 pt-[30px] pb-[50px] border-b border-rule flex flex-col gap-8"
+        className="max-w-[1040px] mx-auto px-11 pt-[30px]"
         variants={fadeUp} initial="hidden" animate="visible"
       >
-        <h1 className="m-0 font-medium text-porter leading-[.98] tracking-[-0.01em]" style={{ fontSize: 'clamp(48px,7vw,64px)', textWrap: 'balance' }}>
-          Meta — Quality Management System
-        </h1>
-        <p className="text-[24px] leading-[1.4] text-ink m-0" style={{ textWrap: 'pretty' }}>
-          A B2B platform that turns a manual, spreadsheet-driven process into an automated calibration system — scaled across five support programs at Meta.
-        </p>
+        <div className="pb-[50px] border-b border-rule flex flex-col gap-8">
+          <h1 className="m-0 font-medium text-porter leading-[.98] tracking-[-0.01em]" style={{ fontSize: 'clamp(48px,7vw,64px)', textWrap: 'balance' }}>
+            Meta — Quality Management System
+          </h1>
+          <p className="text-[24px] leading-[1.4] text-ink m-0" style={{ textWrap: 'pretty' }}>
+            A B2B platform that turns a manual, spreadsheet-driven process into an automated calibration system — scaled across five support programs at Meta.
+          </p>
+        </div>
       </motion.header>
 
       {/* meta strip */}
-      <div className="max-w-[1180px] mx-auto px-11 py-9 border-b border-rule grid gap-[30px] font-mono text-[11px] tracking-[0.14em] uppercase" style={{ gridTemplateColumns: 'repeat(3,1fr)' }}>
-        {[['Role','Product Designer'],['Year','2023'],['Type','B2B · Web App']].map(([k,v])=>(
-          <div key={k}>
-            <span className="block text-ink-soft text-[10px] tracking-[.18em] mb-[6px]">{k}</span>
-            <span className="text-porter text-[13px] tracking-[.06em]">{v}</span>
-          </div>
-        ))}
+      <div className="max-w-[1040px] mx-auto px-11">
+        <div className="py-9 border-b border-rule grid gap-[30px] font-mono text-[11px] tracking-[0.14em] uppercase" style={{ gridTemplateColumns: 'repeat(3,1fr)' }}>
+          {[['Role','Product Designer'],['Year','2023'],['Type','B2B · Web App']].map(([k,v])=>(
+            <div key={k}>
+              <span className="block text-ink-soft text-[10px] tracking-[.18em] mb-[6px]">{k}</span>
+              <span className="text-porter text-[13px] tracking-[.06em]">{v}</span>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Fig. 01 — Cover */}
@@ -58,7 +64,6 @@ export default function Meta() {
 
       {/* Summary */}
       <TwoColText
-        headingLevel="h3"
         heading="Summary"
         right={
           <p className="text-[22px] leading-[1.5] text-ink m-0" style={{ textWrap: 'pretty' }}>
@@ -90,7 +95,6 @@ export default function Meta() {
 
       {/* Section 01 — Background */}
       <TwoColText
-        sectionNum="01"
         sectionLabel="The challenge"
         heading="Redesigning for Fairness at Scale"
         right={
@@ -122,7 +126,6 @@ export default function Meta() {
 
       {/* Section 02 — The Solution */}
       <TwoColText
-        sectionNum="02"
         sectionLabel="The Solution"
         heading="A Unified Standard for Meta’s Global Support"
         right={
@@ -148,10 +151,10 @@ export default function Meta() {
       />
 
       {/* UI Highlights 1*/}
-      <ThreeColCards
+      <ThreeColMedia
         heading="UI highlights"
         headingLevel="h3"
-        cards={[
+        items={[
           {
             media: (
               <img
@@ -199,10 +202,10 @@ export default function Meta() {
       />
 
       {/* UI Highlights 2*/}
-      <ThreeColCards
+      <ThreeColMedia
         heading="UI highlights"
         headingLevel="h3"
-        cards={[
+        items={[
           {
             media: (
               <img
@@ -252,24 +255,10 @@ export default function Meta() {
       />
 
       {/* Next case study */}
-      <div className="max-w-[1180px] mx-auto px-11 pt-[120px] pb-[80px] flex items-end justify-between gap-[40px] border-b border-rule">
-        <div>
-          <div className="font-mono text-[11px] tracking-[.2em] uppercase text-ink-soft mb-[14px]">Next case study</div>
-          <Link
-            to="/case-studies/helix"
-            className="inline-flex items-baseline gap-6 text-porter font-medium tracking-[-0.01em] transition-colors hover:text-rust-deep group"
-            style={{ fontSize: 'clamp(32px,4.5vw,62px)', lineHeight: 1 }}
-          >
-            <span>Helix — a quality system for teams that <em className="italic text-rust-deep font-medium">can't afford to miss</em></span>
-            <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-rust text-white flex-shrink-0 translate-y-2 transition-transform group-hover:translate-x-[6px]">
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5v7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </span>
-          </Link>
-        </div>
-        <div className="font-mono text-[11px] tracking-[.16em] uppercase text-ink-soft text-right leading-[2]">
-          B2B · Web<br />2023 · Lead designer
-        </div>
-      </div>
+      <NextCaseStudy
+        to="/case-studies/helix"
+        title={<>Helix — a quality system for teams that <em className="italic text-rust-deep font-medium">can't afford to miss</em></>}
+      />
 
       <Footer />
     </>

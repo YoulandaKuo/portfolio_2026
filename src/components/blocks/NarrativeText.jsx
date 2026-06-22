@@ -9,7 +9,7 @@ import SectionLabel from './SectionLabel'
  *   sectionNum   — optional numbered circle label
  *   sectionLabel — optional mono label text
  *   heading      — optional heading text or node
- *   headingLevel — 'h2' (default, 46px) | 'h3' (36px)
+ *   headingLevel — 'h2' (default, 40px) | 'h3' (32px)
  *   body         — string, React node, or array of strings/nodes
  *   maxWidth     — CSS max-width for the column (default '780px')
  */
@@ -24,14 +24,14 @@ export default function NarrativeText({
   const H = headingLevel
   const headingSize =
     headingLevel === 'h3'
-      ? 'text-[28px] md:text-[36px]'
-      : 'text-[30px] md:text-[46px]'
+      ? 'text-[24px] md:text-[32px]'
+      : 'text-[28px] md:text-[40px]'
 
   const paragraphs = body == null ? [] : Array.isArray(body) ? body : [body]
 
   return (
     <motion.section
-      className="max-w-[1180px] mx-auto px-6 md:px-11 pt-[80px] md:pt-[120px]"
+      className="max-w-[1040px] mx-auto px-6 md:px-11 pt-[80px] md:pt-[120px]"
       variants={fadeUp}
       initial="hidden"
       whileInView="visible"
@@ -41,7 +41,7 @@ export default function NarrativeText({
         {sectionLabel && <SectionLabel num={sectionNum} label={sectionLabel} />}
         {heading && (
           <H
-            className={`font-medium ${headingSize} leading-[1.04] m-0 mb-8 text-porter tracking-[-0.005em]`}
+            className={`font-medium ${headingSize} leading-[1.2] m-0 mb-8 text-porter tracking-[-0.005em]`}
             style={{ textWrap: 'balance' }}
           >
             {heading}
