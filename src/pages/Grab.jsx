@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
-import { DetailsStrip, TwoColText, StatGrid } from '../components/blocks'
+import { DetailsStrip, TwoColText, StatGrid, FigureBlock } from '../components/blocks'
 
 export default function Grab() {
   return (
@@ -28,6 +28,14 @@ export default function Grab() {
 
       {/* Detail strip */}
       <DetailsStrip items={[['Role','Product Designer'],['Year','2021'],['Type','Consumer mobile app']]} />
+
+      {/* Fig. 01 — Cover */}
+      <FigureBlock
+        variant="cover"
+        media={<img src="/assets/grab-pin-hero.png" alt="Grab PIN and account recovery overview" className="w-full h-full object-cover object-top" />}
+        shadow={false}
+        rounded={false}
+      />
 
       {/* Summary */}
       <TwoColText
@@ -58,6 +66,17 @@ export default function Grab() {
             label: 'supported by a scaled security system across Grab ecosystem',
           },
         ]}
+      />
+
+      {/* Challenge */}
+      <TwoColText
+        sectionLabel="The challenge"
+        heading="Scaling Security for the Fintech Expansion"
+        right={
+          <p className="text-[22px] leading-[1.5] text-ink m-0" style={{ textWrap: 'pretty' }}>
+            As Grab evolved into a financial services leader, the legacy PIN system—originally designed only for simple logins—became a critical bottleneck. With the expansion of GrabPay, an outdated UI posed a risk to user trust. I was tasked with redesigning this core experience, align with a new global design system, and ensure that users could safely access their funds without friction.
+          </p>
+        }
       />
 
       <div className="pb-[120px]" />

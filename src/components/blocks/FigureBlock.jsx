@@ -14,6 +14,7 @@ import SectionLabel from './SectionLabel'
  *   sectionNum   — optional numbered circle label above the figure
  *   sectionLabel — optional mono label above the figure
  *   shadow       — whether to apply drop shadow (default true)
+ *   rounded      — whether to apply rounded corners (default true)
  *   variant      — 'cover' uses mt-[60px]; 'section' uses standard section top padding
  */
 export default function FigureBlock({
@@ -25,6 +26,7 @@ export default function FigureBlock({
   sectionNum,
   sectionLabel,
   shadow = true,
+  rounded = true,
   variant = 'section',
 }) {
   const outerClass =
@@ -42,7 +44,7 @@ export default function FigureBlock({
     >
       {sectionLabel && <SectionLabel num={sectionNum} label={sectionLabel} />}
       <div
-        className="rounded-lg overflow-hidden relative"
+        className={`overflow-hidden relative ${rounded ? 'rounded-lg' : ''}`}
         style={{
           aspectRatio,
           background: bg,
