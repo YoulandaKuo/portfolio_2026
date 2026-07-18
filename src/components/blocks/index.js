@@ -1,4 +1,5 @@
 export { default as SectionLabel } from './SectionLabel'
+export { default as DetailsStrip } from './DetailsStrip'
 export { default as TwoColText } from './TwoColText'
 export { default as ThreeColCards } from './ThreeColCards'
 export { default as StatGrid } from './StatGrid'

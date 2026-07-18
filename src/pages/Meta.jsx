@@ -11,6 +11,7 @@ import {
   FigureBlock,
   NarrativeText,
   NextCaseStudy,
+  DetailsStrip,
 } from '../components/blocks'
 import { fadeUp } from '../lib/motion'
 
@@ -44,16 +45,7 @@ export default function Meta() {
       </motion.header>
 
       {/* meta strip */}
-      <div className="max-w-[1040px] mx-auto px-11">
-        <div className="py-9 border-b border-rule grid gap-[30px] font-mono text-[11px] tracking-[0.14em] uppercase" style={{ gridTemplateColumns: 'repeat(3,1fr)' }}>
-          {[['Role','Product Designer'],['Year','2023'],['Type','B2B · Web App']].map(([k,v])=>(
-            <div key={k}>
-              <span className="block text-ink-soft text-[10px] tracking-[.18em] mb-[6px]">{k}</span>
-              <span className="text-porter text-[13px] tracking-[.06em]">{v}</span>
-            </div>
-          ))}
-        </div>
-      </div>
+      <DetailsStrip items={[['Role','Product Designer'],['Year','2023'],['Type','B2B · Web App']]} />
 
       {/* Fig. 01 — Cover */}
       <FigureBlock
@@ -256,8 +248,8 @@ export default function Meta() {
 
       {/* Next case study */}
       <NextCaseStudy
-        to="/case-studies/helix"
-        title={<>Helix — a quality system for teams that <em className="italic text-rust-deep font-medium">can't afford to miss</em></>}
+        to="/case-studies/grab"
+        title={<>Grab — PIN and <em className="italic text-rust-deep font-medium">account recovery</em></>}
       />
 
       <Footer />

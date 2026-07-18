@@ -35,7 +35,6 @@ export default function Nav({ homePrefix = '' }) {
 
   const navLinks = [
     { href: `${homePrefix}#case-studies`, label: 'Case Studies', id: 'case-studies' },
-    { href: `${homePrefix}#side-projects`, label: 'Side Projects', id: 'side-projects' },
     { href: `${homePrefix}#about`, label: 'About', id: 'about' },
   ]
 
