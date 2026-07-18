@@ -60,7 +60,7 @@ export default function TwoColText({
   if (bleedBg) {
     return (
       <motion.section
-        className="border-t border-b border-rule mt-[140px] py-[80px] md:py-[110px]"
+        className="mt-[140px] py-[80px] md:py-[110px]"
         style={{ background: bleedBg }}
         variants={fadeUp}
         initial="hidden"

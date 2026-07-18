@@ -13,7 +13,7 @@ const EmailIcon = () => (
 
 export default function Footer() {
   return (
-    <footer className="mt-[120px] px-11 py-[60px] border-t border-rule flex items-center justify-between font-mono text-[11px] tracking-[0.16em] uppercase text-ink-soft">
+    <footer className="px-11 py-[60px] border-t border-rule flex items-center justify-between font-mono text-[11px] tracking-[0.16em] uppercase text-ink-soft">
       <div>© 2026 — YOULANDA KUO</div>
       <div className="flex gap-[14px]">
         <a href="https://www.linkedin.com/in/youlanda-k-5145a031/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"

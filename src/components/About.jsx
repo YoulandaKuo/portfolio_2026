@@ -3,7 +3,7 @@ import SectionHead from './SectionHead'
 
 export default function About() {
   return (
-    <section className="max-w-[1100px] mx-auto px-11 pt-[120px]" id="about">
+    <section className="max-w-[1100px] mx-auto px-11 pt-[120px] pb-[120px]" id="about">
       <SectionHead title="About" />
       <motion.div
         className="grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-[60px] items-start"

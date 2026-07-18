@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
  */
 export default function NextCaseStudy({ to, title, label = 'Next case study' }) {
   return (
-    <div className="max-w-[1040px] mx-auto px-11 pt-[120px]">
+    <div className="max-w-[1040px] mx-auto px-11 pt-[120px] pb-[120px]">
       <div className="font-mono text-[11px] tracking-[.2em] uppercase text-ink-soft mb-[14px]">
         {label}
       </div>
