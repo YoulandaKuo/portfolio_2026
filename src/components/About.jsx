@@ -19,7 +19,7 @@ export default function About() {
         </p>
         <div className="font-mono text-[12px] text-ink-soft leading-[2] tracking-[0.04em]">
           {[
-            ['BASED', 'FRANCE / REMOTE'],
+            ['BASED', 'SINGAPORE'],
             ['PREVIOUSLY', 'META · GRAB'],
             ['SPEAKS', 'ENGLISH · 中文 · UN PEU FRANÇAIS'],
           ].map(([k, v], i, arr) => (

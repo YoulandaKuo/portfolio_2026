@@ -1,10 +1,6 @@
 import { motion } from 'framer-motion'
 import SectionHead from './SectionHead'
 import ProjectCard from './ProjectCard'
-import SaasDashboard from './mocks/SaasDashboard'
-import AccountRecoveryPhone from './mocks/AccountRecoveryPhone'
-import MapMock from './mocks/MapMock'
-import InvestorPhone from './mocks/InvestorPhone'
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -14,10 +10,7 @@ const cardVariants = {
 export default function CaseStudies() {
   const cards = [
     { href: '/case-studies/meta', bgClass: 'bg-[#4481ef]', title: 'Meta–Quality Management System', mock: <img src="/assets/meta-calibration.png" alt="" className="absolute inset-0 w-full h-full object-cover object-top" />, arrowLight: true },
-    { href: '/case-studies/helix', bgClass: 'bg-[#2f6fd6]', title: 'Helix–Quality Management System', mock: <SaasDashboard />, arrowLight: true },
-    { href: '#', bgClass: 'bg-[#1aa861]', title: 'Northwind Pay — Account Recovery', mock: <AccountRecoveryPhone /> },
-    { href: '#', bgClass: 'bg-[#1c2730]', title: 'Drayage — Logistics Operations', mock: <MapMock />, arrowLight: true },
-    { href: '#', bgClass: 'bg-[#46506a]', title: 'Crescent Capital — Investor Onboarding', mock: <InvestorPhone /> },
+    { href: '/case-studies/grab', bgClass: 'bg-[#00b14f]', title: 'Grab – PIN and account recovery', mock: <img src="/assets/case-study-cover-grab.png" alt="" className="absolute inset-0 w-full h-full object-cover object-top" />, arrowLight: true },
   ]
 
   return (
