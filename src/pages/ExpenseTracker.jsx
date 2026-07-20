@@ -35,7 +35,7 @@ export default function ExpenseTracker() {
       </motion.header>
 
       {/* meta strip */}
-      <DetailsStrip items={[['Role','Maker'],['Year','2021'],['Type','Progressive web app']]} />
+      <DetailsStrip items={[['Role','Maker'],['Year','2026'],['Type','Progressive web app']]} />
 
       {/* Why I built this */}
       <SplitMedia
