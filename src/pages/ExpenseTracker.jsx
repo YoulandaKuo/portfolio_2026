@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
-import { DetailsStrip, SplitMedia } from '../components/blocks'
+import { DetailsStrip, SplitMedia, TwoColText } from '../components/blocks'
 import { fadeUp } from '../lib/motion'
 
 export default function ExpenseTracker() {
@@ -39,7 +39,9 @@ export default function ExpenseTracker() {
 
       {/* Why I built this */}
       <SplitMedia
-        media={<img src="/assets/expense-tracker-1.png" alt="Expense tracker app" className="w-full h-full object-cover object-top" />}
+        media={<img src="/assets/expense-tracker-1.png" alt="Expense tracker app" className="w-full h-full object-contain" />}
+        aspectRatio="1/1"
+        headingLevel="h3"
         heading="Why I built this"
         body={
           <p className="text-[22px] leading-[1.5] text-ink m-0" style={{ textWrap: 'pretty' }}>
@@ -50,17 +52,26 @@ export default function ExpenseTracker() {
 
       {/* How it works */}
       <SplitMedia
-        media={<img src="/assets/expense-tracker-2.png" alt="Expense tracker home, summary, and transactions screens" className="w-full h-full object-cover object-top" />}
+        media={<img src="/assets/expense-tracker-2.png" alt="Expense tracker home, summary, and transactions screens" className="w-full h-full object-contain" />}
+        aspectRatio="1/1"
+        headingLevel="h3"
         heading="How it works"
         body={
-          <>
-            <p className="text-[22px] leading-[1.5] text-ink m-0 mb-5" style={{ textWrap: 'pretty' }}>
-              The home page focuses on a simple flow for adding new expenses, with customisable settings like hiding categories you don't use and adding new currencies. The Summary tab gives you a quick view of how much you've been spending and on what. The Transactions tab holds everything you've entered, so if you need to search for something specific, that's where you go.
-            </p>
-            <p className="text-[22px] leading-[1.5] text-ink m-0" style={{ textWrap: 'pretty' }}>
-              Want to try it yourself? Head to <a href="https://expense-tracker.youlanda.net/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-rust-deep">expense-tracker.youlanda.net</a> — since it's a PWA, you can save it to your home screen and use it just like a native app.
-            </p>
-          </>
+          <p className="text-[22px] leading-[1.5] text-ink m-0" style={{ textWrap: 'pretty' }}>
+            The home page focuses on a simple flow for adding new expenses, with customisable settings like hiding categories you don't use and adding new currencies. The Summary tab gives you a quick view of how much you've been spending and on what. The Transactions tab holds everything you've entered, so if you need to search for something specific, that's where you go.
+          </p>
+        }
+      />
+
+      {/* Try it out */}
+      <TwoColText
+        headingLevel="h3"
+        heading="Try it out"
+        bleedBg="#f3edd9"
+        right={
+          <p className="text-[22px] leading-[1.5] m-0">
+            Want to try it yourself? Head to <a href="https://expense-tracker.youlanda.net/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-rust-deep">expense-tracker.youlanda.net</a> — since it's a PWA, you can save it to your home screen and use it just like a native app.
+          </p>
         }
       />
 
